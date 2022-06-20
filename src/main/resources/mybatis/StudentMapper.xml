@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wangfengyu.demo.dao.StudentDao">
+    <select id="listStudent" resultType="wangfengyu.demo.pojo.Student">
+        select *
+        from student.student;
+    </select>
+    
+    <select id="listStudentByName" parameterMap="wangfengyu.demo.pojo.query.StudentQuery" resultType="wangfengyu.demo.pojo.Student">
+        select *
+        from student.student;
+        <where>
+            <if test="stu_name != null and stu_name != ''">
+                and 'stu_name' like concat('%', #{stu_name},'%')
+            </if>
+        </where>
+    </select>
+</mapper>
